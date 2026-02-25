@@ -3,7 +3,7 @@ package com.clclimatizacao.api.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Table")
+@Table(name = "Table_Clientes")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
