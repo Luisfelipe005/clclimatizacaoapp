@@ -10,27 +10,25 @@ public class Equipamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Cliente cliente;
+    private Cliente clienteId;
     private String modelo;
     private String localInstalado;
-    private LocalDate dataInstalacao;
     private LocalDate dataUltimaManutencao;
     private Integer periodicidadeMeses;
     private LocalDate proximaManutencao;
     private boolean ativo;
 
-    public Equipamento(Long id, Cliente cliente, String modelo, String localInstalado, LocalDate dataInstalacao,
+    public Equipamento(Long id, Cliente cliente, String modelo, String localInstalado,
                        LocalDate dataUltimaManutencao, Integer periodicidadeMeses, LocalDate proximaManutencao,
                        boolean ativo) {
         this.id = id;
-        this.cliente = cliente;
+        this.clienteId = cliente;
         this.modelo = modelo;
         this.localInstalado = localInstalado;
-        this.dataInstalacao = dataInstalacao;
         this.dataUltimaManutencao = dataUltimaManutencao;
         this.periodicidadeMeses = periodicidadeMeses;
         this.proximaManutencao = proximaManutencao;
-        this.ativo = ativo;
+        this.ativo = true;
     }
 
     public Long getId() {
@@ -41,12 +39,12 @@ public class Equipamento {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteId(Cliente cliente) {
+        this.clienteId = cliente;
     }
 
     public String getModelo() {
@@ -63,14 +61,6 @@ public class Equipamento {
 
     public void setLocalInstalado(String localInstalado) {
         this.localInstalado = localInstalado;
-    }
-
-    public LocalDate getDataInstalacao() {
-        return dataInstalacao;
-    }
-
-    public void setDataInstalacao(LocalDate dataInstalacao) {
-        this.dataInstalacao = dataInstalacao;
     }
 
     public LocalDate getDataUltimaManutencao() {
