@@ -16,7 +16,7 @@ public class Cliente {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
-        this.ativo = ativo;
+        this.ativo = true;
     }
 
     public String getTelefone() {
