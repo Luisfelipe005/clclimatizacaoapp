@@ -14,6 +14,7 @@ public class Equipamentocontroller {
     public Equipamentocontroller(Equipamentoservice equipamentoservice) {
         this.equipamentoservice = equipamentoservice;
     }
+    /*Falta os get*/
 
     @PostMapping("/{id}")
     public Equipamento criaEquipamento(@PathVariable Long id, @RequestBody Equipamento equipamento){
