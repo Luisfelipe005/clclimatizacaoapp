@@ -94,4 +94,14 @@ public class Equipamento {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Status getStatus(){
+        LocalDate dataAtual = LocalDate.now();
+        if(dataAtual.isAfter(this.getProximaManutencao())){
+            return Status.VENCIDO;
+        } else if (this.getProximaManutencao().isAfter(dataAtual.plusDays(7))) {
+            return Status.VENCIMENTO_PERTO;
+        }
+        return Status.EM_DIA;
+    }
 }
