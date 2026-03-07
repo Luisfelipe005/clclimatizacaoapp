@@ -5,6 +5,7 @@ import com.clclimatizacao.api.service.Equipamentoservice;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/Equipamentos")
@@ -15,6 +16,10 @@ public class Equipamentocontroller {
         this.equipamentoservice = equipamentoservice;
     }
     /*Falta os get*/
+    @GetMapping()
+    public List<Equipamento> listaEquipamentos(){
+        return equipamentoservice.listaEquipamentos();
+    }
 
     @PostMapping("/{id}")
     public Equipamento criaEquipamento(@PathVariable Long id, @RequestBody Equipamento equipamento){
