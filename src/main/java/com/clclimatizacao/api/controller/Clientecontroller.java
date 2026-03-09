@@ -26,7 +26,7 @@ public class Clientecontroller {
     }
 
     @PatchMapping("/{id}")
-    public Cliente atualizaTelefone(@RequestParam String telefone, @PathVariable Long id){
+    public Cliente atualizaTelefone(@PathVariable Long id, @RequestParam String telefone){
         return clienteservice.atualizaCliente(telefone, id);
     }
 

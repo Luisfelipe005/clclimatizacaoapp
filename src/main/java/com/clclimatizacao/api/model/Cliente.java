@@ -10,13 +10,16 @@ public class Cliente {
     private Long id;
     private String nome;
     private String telefone;
-    private boolean ativo;
+    private Boolean ativo;
 
-    public Cliente(Long id, String nome, String telefone, boolean ativo) {
+    public Cliente(Long id, String nome, String telefone, Boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.ativo = true;
+    }
+
+    public Cliente() {
     }
 
     public String getTelefone() {

@@ -15,10 +15,19 @@ public class Equipamentocontroller {
     public Equipamentocontroller(Equipamentoservice equipamentoservice) {
         this.equipamentoservice = equipamentoservice;
     }
-    /*Falta os get*/
     @GetMapping()
     public List<Equipamento> listaEquipamentos(){
         return equipamentoservice.listaEquipamentos();
+    }
+
+    @GetMapping("/Vencidos")
+    public List<Equipamento> listaVencidos(){
+        return equipamentoservice.listaEquipamentosVencidos();
+    }
+
+    @GetMapping("/ProxVencidos")
+    public List<Equipamento> listaVencidosEmSeteDias(){
+        return equipamentoservice.listaQuaseVencidos();
     }
 
     @PostMapping("/{id}")

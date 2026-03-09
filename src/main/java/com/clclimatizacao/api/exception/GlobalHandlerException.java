@@ -21,4 +21,9 @@ public class GlobalHandlerException {
     public ResponseEntity<String> responseEntity3(EquipamentoNaoEncontradoException equipamentoNaoEncontradoException){
         return ResponseEntity.status(404).body(equipamentoNaoEncontradoException.getMessage());
     }
+
+    @ExceptionHandler(ClienteInativoException.class)
+    public ResponseEntity<String> responseEntity4(ClienteInativoException clienteInativoException){
+        return ResponseEntity.status(400).body(clienteInativoException.getMessage());
+    }
 }

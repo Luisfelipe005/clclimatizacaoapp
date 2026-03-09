@@ -10,6 +10,8 @@ public class Equipamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente clienteId;
     private String modelo;
     private String localInstalado;
@@ -29,6 +31,9 @@ public class Equipamento {
         this.periodicidadeMeses = periodicidadeMeses;
         this.proximaManutencao = proximaManutencao;
         this.ativo = true;
+    }
+
+    public Equipamento() {
     }
 
     public Long getId() {

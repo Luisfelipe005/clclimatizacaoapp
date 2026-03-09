@@ -1,5 +1,6 @@
 package com.clclimatizacao.api.service;
 
+import com.clclimatizacao.api.exception.ClienteInativoException;
 import com.clclimatizacao.api.exception.ClienteNaoEncontradoException;
 import com.clclimatizacao.api.exception.EquipamentoNaoEncontradoException;
 import com.clclimatizacao.api.exception.NotFoundException;
@@ -49,17 +50,20 @@ public class Equipamentoservice {
        } else if (equipamento.getModelo().isEmpty() || equipamento.getLocalInstalado().isEmpty()) {
            throw new NotFoundException("Modelo ou Local não pode ser vazio");
        } else if (equipamento.getDataUltimaManutencao() == null || equipamento.getPeriodicidadeMeses() > 0) {
-           throw new NotFoundException("Data de instalação não pode ser estar vazia");
+           throw new NotFoundException("Data de instalação não pode ser estar vazia e periodicidade não pode ser 0");
        }
 
-       LocalDate proxima = equipamento.getDataUltimaManutencao().plusMonths(equipamento.getPeriodicidadeMeses());
-       equipamento.setProximaManutencao(proxima);
+       Cliente cliente = optionalCliente.get();
+       if(cliente.isAtivo()){
+           LocalDate proxima = equipamento.getDataUltimaManutencao().plusMonths(equipamento.getPeriodicidadeMeses());
+           equipamento.setProximaManutencao(proxima);
 
-       return equipamentorepository.save(equipamento);
+           return equipamentorepository.save(equipamento);
+       }
+       throw new ClienteInativoException("O cliente tem que estar ativo para criar um equipamento para ele! ");
     }
 
     /*Atualizar Equipamento*/
-    //Ver esse metodo
     public Equipamento atualizaEquipamento(Long id, LocalDate novaData, Integer novaPeriodiciodade){
         Optional<Equipamento> optionalEquipamento = equipamentorepository.findById(id);
         if(optionalEquipamento.isEmpty()){
