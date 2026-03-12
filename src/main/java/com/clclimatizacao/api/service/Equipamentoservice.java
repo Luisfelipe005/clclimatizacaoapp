@@ -43,13 +43,13 @@ public class Equipamentoservice {
     }
 
     /*Criar equipamento*/
-    public Equipamento criaEquipamento(Long clienteId, Equipamento equipamento){
-       Optional<Cliente> optionalCliente = clienterepository.findById(clienteId);
+    public Equipamento criaEquipamento(Equipamento equipamento){
+       Optional<Cliente> optionalCliente = clienterepository.findById(equipamento.getClienteId().getId());
        if(optionalCliente.isEmpty()){
            throw new ClienteNaoEncontradoException("Cliente não foi identificado por esse id!");
        } else if (equipamento.getModelo().isEmpty() || equipamento.getLocalInstalado().isEmpty()) {
            throw new NotFoundException("Modelo ou Local não pode ser vazio");
-       } else if (equipamento.getDataUltimaManutencao() == null || equipamento.getPeriodicidadeMeses() > 0) {
+       } else if (equipamento.getDataUltimaManutencao() == null || equipamento.getPeriodicidadeMeses() < 0) {
            throw new NotFoundException("Data de instalação não pode ser estar vazia e periodicidade não pode ser 0");
        }
 
@@ -57,6 +57,7 @@ public class Equipamentoservice {
        if(cliente.isAtivo()){
            LocalDate proxima = equipamento.getDataUltimaManutencao().plusMonths(equipamento.getPeriodicidadeMeses());
            equipamento.setProximaManutencao(proxima);
+           equipamento.setClienteId(cliente);
 
            return equipamentorepository.save(equipamento);
        }

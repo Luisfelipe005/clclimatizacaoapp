@@ -1,5 +1,6 @@
 package com.clclimatizacao.api.controller;
 
+import com.clclimatizacao.api.model.Cliente;
 import com.clclimatizacao.api.model.Equipamento;
 import com.clclimatizacao.api.service.Equipamentoservice;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +31,14 @@ public class Equipamentocontroller {
         return equipamentoservice.listaQuaseVencidos();
     }
 
-    @PostMapping("/{id}")
-    public Equipamento criaEquipamento(@PathVariable Long id, @RequestBody Equipamento equipamento){
-        return equipamentoservice.criaEquipamento(id, equipamento);
+    @PostMapping()
+    public Equipamento criaEquipamento(@RequestBody Equipamento equipamento){
+        return equipamentoservice.criaEquipamento(equipamento);
     }
 
     @PatchMapping("/{id}")
-    public Equipamento atualizaEquipamento(@PathVariable Long id,@RequestParam LocalDate novadata, Integer novaPeriodiciodade){
-        return equipamentoservice.atualizaEquipamento(id, novadata,novaPeriodiciodade);
+    public Equipamento atualizaEquipamento(@PathVariable Long id,@RequestParam LocalDate novaData, Integer novaPeriodiciodade){
+        return equipamentoservice.atualizaEquipamento(id, novaData,novaPeriodiciodade);
     }
 
     @DeleteMapping("/{id}")

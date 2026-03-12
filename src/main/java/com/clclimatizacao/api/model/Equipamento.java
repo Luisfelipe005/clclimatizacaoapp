@@ -18,11 +18,11 @@ public class Equipamento {
     private LocalDate dataUltimaManutencao;
     private Integer periodicidadeMeses;
     private LocalDate proximaManutencao;
-    private boolean ativo;
+    private Boolean ativo;
 
     public Equipamento(Long id, Cliente cliente, String modelo, String localInstalado,
                        LocalDate dataUltimaManutencao, Integer periodicidadeMeses, LocalDate proximaManutencao,
-                       boolean ativo) {
+                       Boolean ativo) {
         this.id = id;
         this.clienteId = cliente;
         this.modelo = modelo;
