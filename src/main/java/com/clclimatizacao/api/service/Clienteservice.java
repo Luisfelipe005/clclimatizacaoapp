@@ -17,6 +17,14 @@ public class Clienteservice {
         this.clienterepository = clienterepository;
     }
 
+    /*Busca cliente por id*/
+    public Cliente buscaClientePorId(Long id){
+        if(clienterepository.findById(id).isEmpty()){
+            throw new ClienteNaoEncontradoException("Cliente não foi encontrado com esse id.");
+        }
+        return clienterepository.findById(id).get();
+    }
+
     /*Lista clientes*/
     public List<Cliente> clientes(){
         return clienterepository.findAll();
@@ -42,6 +50,13 @@ public class Clienteservice {
         Cliente cliente = optionalCliente.get();
         cliente.setTelefone(telefone);
         return  clienterepository.save(cliente);
+    }
+
+    /* Atualiza email */
+    public Cliente atualizaEmail(String email, Long id){
+        Cliente cliente = buscaClientePorId(id);
+        cliente.setEmail(email);
+        return clienterepository.save(cliente);
     }
 
     /*Desativa cliente*/

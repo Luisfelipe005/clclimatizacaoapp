@@ -20,6 +20,11 @@ public class Clientecontroller {
         return clienteservice.clientes();
     }
 
+    @GetMapping("/{id}")
+    public Cliente getClientePorId(@PathVariable Long id){
+        return clienteservice.buscaClientePorId(id);
+    }
+
     @PostMapping()
     public Cliente criaCliente(@RequestBody Cliente cliente){
         return clienteservice.criaCliente(cliente);
@@ -28,6 +33,11 @@ public class Clientecontroller {
     @PatchMapping("/{id}")
     public Cliente atualizaTelefone(@PathVariable Long id, @RequestParam String telefone){
         return clienteservice.atualizaCliente(telefone, id);
+    }
+
+    @PutMapping("/{id}")
+    public Cliente atualizaEmail(@PathVariable Long id, @RequestParam String email){
+        return clienteservice.atualizaEmail(email, id);
     }
 
     @DeleteMapping("/{id}")
